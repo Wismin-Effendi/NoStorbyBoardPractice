@@ -1,0 +1,14 @@
+
+Step 1:
+Deployment Info: Main Interface:  delete Main ( remove it )
+
+Step 2:
+Create window manually in AppDelegate: didFinishLaunchingWithOptions 
+	    
+	    window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        // window?.rootViewController = ViewController()   // 1st way to do it
+        window?.rootViewController = UINavigationController(rootViewController: ViewController())  // 2nd way to do it with NavCtrl
+
+
