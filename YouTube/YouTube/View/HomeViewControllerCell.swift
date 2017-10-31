@@ -24,11 +24,16 @@ class HomeViewControllerCell: UICollectionViewCell {
     
     var video: Video? {
         didSet {
-            print("We are here...\(video)")
-            thumbnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
-            profileImageView.image = UIImage(named: (video?.channel?.profileImageName)!)
-            titleTextView.text = video?.title
-            subTitleTextView.text = video?.channel?.name
+            guard let video = video,
+                let thumbnailImageName = video.thumbnailImageName,
+                let channelName = video.channel?.name,
+                let views = video.views,
+                let date = video.date,
+                let profileImageName = video.channel?.profileImageName else { return }
+            thumbnailImageView.image = UIImage(named: thumbnailImageName)
+            profileImageView.image = UIImage(named: profileImageName)
+            titleTextView.text = video.title
+            subTitleTextView.text = "\(channelName) - \(views) - \(date)"
         }
     }
     
