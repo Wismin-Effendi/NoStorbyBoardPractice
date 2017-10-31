@@ -26,6 +26,7 @@ class HomeViewController: UICollectionViewController {
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         customMenuBar()
+        customButtons()
     }
     
     func customMenuBar() {
@@ -36,6 +37,26 @@ class HomeViewController: UICollectionViewController {
         menuBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         menuBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true 
+    }
+    
+    func customButtons() {
+        
+        let search = UIImage(named: "search")?.withRenderingMode(.alwaysTemplate)
+        let searchButton = UIBarButtonItem(image: search, style: .plain, target: self, action: #selector(handleSearch))
+        searchButton.tintColor = .white
+        
+        let more = UIImage(named: "more")?.withRenderingMode(.alwaysTemplate)
+        let moreButton = UIBarButtonItem(image: more, style: .plain, target: self, action: #selector(handleMore))
+        moreButton.tintColor = .white
+        navigationItem.rightBarButtonItems = [moreButton, searchButton]
+    }
+    
+    @objc func handleSearch() {
+        print(123)
+    }
+    
+    @objc func handleMore() {
+        print(456)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
