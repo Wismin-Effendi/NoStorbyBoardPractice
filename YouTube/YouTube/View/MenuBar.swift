@@ -11,11 +11,12 @@ import UIKit
 class MenuBar: UIView {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let images = ["home", "trending", "subscriptions", "library"]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        collectionView.backgroundColor = UIColor(red: 230/255, green: 31/255, blue: 32/255, alpha: 1.0)
+        collectionView.backgroundColor = UIColor.CustomColor.youTubeRed
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)
@@ -24,7 +25,7 @@ class MenuBar: UIView {
         collectionView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         collectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
     
     
@@ -41,9 +42,11 @@ extension MenuBar: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MenuCollectionViewCell
         
-        cell.backgroundColor = .blue
+        cell.thumbImage.image = UIImage(named: images[indexPath.row])?.withRenderingMode(.alwaysTemplate)
+        cell.tintColor = UIColor.CustomColor.iconGray
+        
         return cell
     }
     

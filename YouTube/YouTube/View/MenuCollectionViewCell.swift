@@ -27,4 +27,10 @@ class MenuCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override var isSelected: Bool {
+        didSet {
+            tintColor = isSelected ? UIColor.white : UIColor.CustomColor.iconGray
+        }
+    }
 }
