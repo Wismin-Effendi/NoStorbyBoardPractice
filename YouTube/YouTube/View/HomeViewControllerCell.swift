@@ -22,6 +22,16 @@ class HomeViewControllerCell: UICollectionViewCell {
         setupViews()
     }
     
+    var video: Video? {
+        didSet {
+            print("We are here...\(video)")
+            thumbnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
+            profileImageView.image = UIImage(named: (video?.channel?.profileImageName)!)
+            titleTextView.text = video?.title
+            subTitleTextView.text = video?.channel?.name
+        }
+    }
+    
     func setupViews() {
 
         addSubview(thumbnailImageView)

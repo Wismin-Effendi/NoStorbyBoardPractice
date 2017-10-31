@@ -11,6 +11,28 @@ import UIKit
 class HomeViewController: UICollectionViewController {
     
     let menuBar = MenuBar()
+    
+    var videos: [Video] = {
+        let channel = Channel()
+        channel.name = "ChainsmokersVEVO"
+        channel.profileImageName = "chainsmookers"
+        
+        let paris = Video()
+        paris.thumbnailImageName = "chainsmookers"
+        paris.title = "The Chainsmokers - Paris"
+        paris.views = "100,000,000"
+        paris.date = "2 months ago"
+        paris.channel = channel
+
+        let closer = Video()
+        closer.thumbnailImageName = "chainsmookers"
+        closer.title = "The Chainsmokers - Closer"
+        closer.views = "500,000,000"
+        closer.date = "1 months ago"
+        closer.channel = channel
+        
+        return [paris, closer]
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,12 +83,14 @@ class HomeViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 5
+        return videos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeViewControllerCell
+        
+        cell.video = videos[indexPath.item]
         
         return cell
     }
